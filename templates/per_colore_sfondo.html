@@ -1,0 +1,48 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+    <head>
+        <script lang="Javascripct">
+            function saluto(){
+                var date = new Date();
+                var hour = date.getHours();
+                if (hour <= 12){
+                    document.writeln("Buon Giorno")
+                }
+                else if (hour <= 17){
+                    document.writeln("Buon Pomeriggio")
+                }
+                else {
+                    document.writeln("Buon Sera")
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="esegui" onclick="saluto()"></body>
+    </body>
+</html>
