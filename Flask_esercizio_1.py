@@ -60,11 +60,92 @@ if num_random2 == 1:
   fr = "Sai che sei innamorato quando non vuoi sddormentarti perché la realtà e migliore dei tuoi sogni"
   for ele in frasi:
     if ele["Frase"] == fr:
-      messaggio = ""
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 2:
+  fr = "Amare sè stessi è l'inizio di una storia d'amore lunga tutta una vita"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 3:
+  fr = "Studia il passato se vuoi prevedere il futuro"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 4:
+  fr = "Più leggi, più cose saprai. Più cose impari, in più luoghi andrai"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 5:
+  fr = "Non considerare mai lo studio come un dovere, ma come un’invidiabile opportunità"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 6:
+  fr = "L’autorità di chi insegna è spesso un ostacolo per chi vuole imparare"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 7:
+  fr = "Vivi come se dovessi morire domani. Impara come se dovessi vivere per sempre"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 8:
+  fr = "Sii fedele a ciò che esiste dentro di te"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 9:
+  fr = "Sii ciò che sei e dì ciò che senti, perché quelli a cui importa non contano e a quelli che contano non importa"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
+elif num_random2 == 10:
+  fr = "Chi non pensa a se stesso non pensa affatto"
+  for ele in frasi:
+    if ele["Frase"] == fr:
+      @app.route('/frasicelebri', methods=['GET'])
+      def frasicel():
+        return render_template("frasicelebri.html", frase = fr, autor = ele["autore"] )
 
 
 
+# 4. modificare il server precedente per far sì che quando l'utente clicca sulla terza immagine venga visualizzato il numero di giorni
+# che mancano alla fine della scuola. Utilizzare un file css per definire la grafica della pagina.
+# La route per accedere al serizio deve essere /quantomanca
 
+import datetime
+fine_scuola = datetime.date(2022,6,8) - datetime.date.today()
+
+
+# trasformare in str
+date_str = str(fine_scuola)
+new_date_str = date_str.replace(", 0:00:00", "")
+fraseC == "mancano "+ new_date_str + "per la fina della scuola"
+
+
+@app.route('/quantomanca', methods=['GET'])
+def pollofritto():
+    return ("countdown.html", adgfr = fraseC)
 
 
 
