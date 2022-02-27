@@ -139,13 +139,13 @@ fine_scuola = datetime.date(2022,6,8) - datetime.date.today()
 
 # trasformare in str
 date_str = str(fine_scuola)
-new_date_str = date_str.replace(", 0:00:00", "")
-fraseC == "mancano "+ new_date_str + "per la fina della scuola"
+new_date_str = date_str.replace(" days, 0:00:00", "")
+fraseC = "mancano "+ new_date_str + " per la fina della scuola"
 
 
 @app.route('/quantomanca', methods=['GET'])
 def pollofritto():
-    return ("countdown.html", adgfr = fraseC)
+    return render_template("countdown.html", phrase = fraseC)
 
 
 
