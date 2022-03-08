@@ -12,7 +12,7 @@ def per_log():
 
 
 @app.route('/data', methods=['GET'])
-def saluto():
+def data():
     utente = request.args["Username"]
     Pass = request.args["Password"]
     if utente == "admin" and Pass == "xxx123##":
