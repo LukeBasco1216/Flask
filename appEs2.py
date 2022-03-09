@@ -17,29 +17,45 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def registration():
-    return render_template("registration.html")
+   return render_template("registration.html")
 
 
 dati = []
 
-@app.route('/data', methods=['POST'])
+@app.route('/data', methods=['GET'])
 def data():
-    Name = request.args["Name"]
-    Username = request.args["Username"]
-    Password = request.args["Password"]
-    Conferma = request.args["Conferma"]
-    if Name == "" or Username == "" or Password == "" or Conferma == "":
-        return render_template("notfillederror.html")
-    if Password != Conferma:
-        return render_template("incorrectPass.html")
+    nm = request.args['Name']
+    us = request.args['Username']
+    pw = request.args['Password']
+    confpw = request.args['Conferma']
+    Sex = request.args['Sex']
+    if confpw == pw:
+        dati.append({'Name': nm, 'Username' : us, 'Password' : pw, 'conferma_password' : confpw, 'sesso': Sex})
+        print(dati)
+        return render_template("login.html", nm= nm, us = us, pw = pw , confpw=confpw,dati= dati)
     else:
+        return '<h1>Errore, password non combacia</h1>'
 
 
+
+@app.route('/login', methods=['GET'])
+def per_log():
+    username_log = request.args["Username"]
+    pass_log = request.args["Password"]
+    for utente in dati:
+        # utente[chiave del dizionario]
+        if utente["Username"] == username_log and utente["Password"] == pass_log:
+            # controllo se l'utente e m o f per il benvenuto
+            if utente["sesso"] == M:
+                return render_template("benvenutoM.html", nome_user = utente["Name"])
+            else:
+                return render_template("benvenutaF.html", nome_user = utente["Name"])
+
+            return render_template("welcomeEs1.html", nome = username_log)
+    return render_template("errore.html")
+        
 
 
 
 if __name__ == '__main__':
- app.run(host='0.0.0.0', port=3245, debug=True)
-
-
-
+   app.run(host='0.0.0.0', port=3245, debug=True)
