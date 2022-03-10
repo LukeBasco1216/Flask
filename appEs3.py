@@ -1,6 +1,6 @@
 # 1a parte
 # realizzare un server web che permetta di conoscere capoluoghi di regione..
-# l'utente inserisce il nome della regione e il programma o l'applicazione reswtituisce il nome
+# l'utente inserisce il nome della regione e il programma o l'applicazione restituisce il nome
 # del capoluogo della regione.
 # caricare i capoluoghi e le regioni in una opportuna struttura dati 
 
@@ -12,21 +12,28 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-capoluoghiRegione = {'Abruzzo': 'L\'Aquila','Basilicata': 'Potenza','Calabria': 'Catanzaro','Campania': 'Napoli',
-'Emilia-Romagna': 'Bologna','Friuli-Venezia Giulia': 'Trieste','Lazio': 'Roma','Liguria': 'Genova','Lombardia': 'Milano',
-'Marche': 'Ancona','Molise': 'Campobasso','Piemonte': 'Torino','Puglia': 'Bari','Sardegna': 'Cagliari','Sicilia': 'Palermo',
-'Toscana': 'Firenze','Trentino-Alto Adige': 'Trento','Umbria': 'Perugia','Valle dAosta': 'Aosta','Veneto': 'Venezia'}
+capoluoghiRegione = [{"Regione":'Abruzzo', "Capoluogo": 'L\'Aquila'},{"Regione":'Basilicata', "Capoluogo": 'Potenza'},{"Regione":'Calabria', "Capoluogo": 'Catanzaro'},
+{"Regione":'Campania',"Capoluogo": 'Napoli'},{"Regione": 'Emilia-Romagna',"Capoluogo": 'Bologna'},{"Regione":'Friuli-Venezia Giulia',"Capoluogo": 'Trieste'},
+{"Regione": 'Lazio',"Capoluogo": 'Roma'},{"Regione": 'Liguria',"Capoluogo": 'Genova'},{"Regione": 'Lombardia',"Capoluogo": 'Milano'},{"Regione":'Marche',"Capoluogo":'Ancona'},
+{"Regione":'Molise', "Capoluogo":'Campobasso'},{"Regione":'Piemonte', "Capoluogo":'Torino'},{"Regione":'Puglia',"Capoluogo": 'Bari'},
+{"Regione":'Sardegna',"Capoluogo": 'Cagliari'},{"Regione":'Sicilia',"Capoluogo": 'Palermo'},{"Regione":'Toscana',"Capoluogo": 'Firenze'},
+{"Regione":'Trentino-Alto Adige',"Capoluogo": 'Trento'},{"Regione":'Umbria',"Capoluogo": 'Perugia'},{"Regione":'Valle dAosta',"Capoluogo": 'Aosta'},
+{"Regione":'Veneto',"Capoluogo": 'Venezia'}]
 
 
 
 @app.route('/', methods=['GET'])
 def registration():
-   return render_template("inputReg.html")
+  return render_template("inputReg.html")
 
    
 @app.route('/data', methods=['GET'])
 def dati():
     regione = request.args['Regione'] 
+    for ele in capoluoghiRegione:
+      if ele == regione:
+
+
     
 
 
