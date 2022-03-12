@@ -46,7 +46,7 @@ def per_log():
         # utente[chiave del dizionario]
         if utente["Username"] == username_log and utente["Password"] == pass_log:
             # controllo se l'utente e m o f per il benvenuto
-            if utente["sesso"] == M:
+            if utente["sesso"] == "M":
                 return render_template("benvenutoM.html", nome_user = utente["Name"])
             else:
                 return render_template("benvenutaF.html", nome_user = utente["Name"])

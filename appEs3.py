@@ -5,7 +5,7 @@
 # caricare i capoluoghi e le regioni in una opportuna struttura dati 
 
 # 2a parte
-# modificare poi l'esercizion precedente per permetter all'utente di inserire un capoluogo e di avere 
+# modificare poi l'esercizio precedente per permettere all'utente di inserire un capoluogo e di avere 
 # la regione in cui si trova, l'utente scieglie se avere la regione o il capoluogo selezionando un radio-button
 
 
@@ -24,17 +24,35 @@ capoluoghiRegione = [{"Regione":'Abruzzo', "Capoluogo": 'L\'Aquila'},{"Regione":
 
 @app.route('/', methods=['GET'])
 def registration():
-  return render_template("inputReg.html")
+  return render_template("allInputsforEs3.html")
 
    
 @app.route('/data', methods=['GET'])
 def dati():
-    regione = request.args['Regione'] 
+  reg_cap = request.args['WhatToInsert'] 
+  if reg_cap == "Regione":
+    return render_template("inserimentoRegione.html")
+  else: 
+    return render_template("inserimentoCapoluogo.html")
+    #  regione_ins = request.args['Regione'] 
+    #  for ele in capoluoghiRegione:
+    #    if ele["Regione"] == regione_ins:
+    #      return render_template("RegCap.html", reg = ele["Regione"], cap = ele["Capoluogo"])
+ 
+
+@app.route('/datareg', methods=['GET'])
+def regi():
+    regione_ins = request.args['regione'] 
     for ele in capoluoghiRegione:
-      if ele == regione:
+      if ele["Regione"] == regione_ins:
+        return render_template("RegCap.html", reg = ele["Regione"], cap = ele["Capoluogo"])
 
-
-    
+@app.route('/datacap', methods=['GET'])
+def capo():
+    capoluogo_ins = request.args['capoluogo'] 
+    for ele in capoluoghiRegione:
+      if ele["Capoluogo"] == capoluogo_ins:
+        return render_template("CapReg.html", reg = ele["Regione"], cap = ele["Capoluogo"])
 
 
 
