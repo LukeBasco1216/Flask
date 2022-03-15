@@ -46,6 +46,8 @@ def regi():
     for ele in capoluoghiRegione:
       if ele["Regione"] == regione_ins:
         return render_template("RegCap.html", reg = ele["Regione"], cap = ele["Capoluogo"])
+      else:
+        return render_template("errore.html")
 
 @app.route('/datacap', methods=['GET'])
 def capo():
@@ -53,6 +55,8 @@ def capo():
     for ele in capoluoghiRegione:
       if ele["Capoluogo"] == capoluogo_ins:
         return render_template("CapReg.html", reg = ele["Regione"], cap = ele["Capoluogo"])
+       else:
+        return render_template("errore.html")
 
 
 
