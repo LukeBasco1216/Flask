@@ -20,40 +20,77 @@ quartieri_milano = gpd.read_file("/workspace/Flask/esercizio6/zip files/ds964_ni
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  return render_template("homepage.html")
+  quartieri = [ item for item in quartieri_milano.NIL]
+  return render_template("homepage.html", quartieri=quartieri)
 
 
 
-# @app.route('/plot', methods=("POST", "GET"))
-# def mpl():
-#     return render_template('plot.html', PageTitle = "Matplotlib")
+@app.route('/visualizza', methods=['GET'])
+def visualizza():
+  fig, ax = plt.subplots(figsize = (12,8))
+
+  quartieri_milano.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
+  contextily.add_basemap(ax=ax)
+  output = io.BytesIO()
+  FigureCanvas(fig).print_png(output)
+  return Response(output.getvalue(), mimetype='image/png')
 
 
-# @app.route('/plot.png', methods=['GET'])
-# def plot_png():
 
-#     fig, ax = plt.subplots(figsize = (12,8))
-
-#     quartieri_milano.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
-#     contextily.add_basemap(ax=ax)
-#     output = io.BytesIO()
-#     FigureCanvas(fig).print_png(output)
-#     return Response(output.getvalue(), mimetype='image/png')
+@app.route('/ricerca', methods=['GET'])
+def ricerca():
+  return render_template("ricerca.html")
 
 
 @app.route('/data', methods=("POST", "GET"))
 def data():
   quartiere_inserito = request.args["Quartiere"]
+  quartieri2 = [ item for item in quartieri_milano.NIL]
+
+  quart = quartieri_milano[quartieri_milano.NIL == quartiere_inserito]
+  if quartiere_inserito in quartieri2:
+
+    fig, ax = plt.subplots(figsize = (12,8))
+
+    quart.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
+    contextily.add_basemap(ax=ax)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+  else:
+    return render_template("errore.html")
+
+
+
+@app.route('/scelta', methods=['GET'])
+def scelta():
+  quartieri = quartieri_milano.NIL
+  return render_template("scelta.html", quartieri=quartieri)
+
+
+@app.route('/sceltaRis', methods=['GET'])
+def sceltaRis():
+  quartiere_inserito = request.args["quartie"]
 
   quart = quartieri_milano[quartieri_milano.NIL == quartiere_inserito]
 
   fig, ax = plt.subplots(figsize = (12,8))
 
-  quart.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
+  quart.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
   contextily.add_basemap(ax=ax)
   output = io.BytesIO()
   FigureCanvas(fig).print_png(output)
   return Response(output.getvalue(), mimetype='image/png')
+
+
+
+
+@app.route('/fontanelle', methods=['GET'])
+def fontanelle():
+  quartieri = quartieri_milano.NIL
+  return render_template("fontanelle.html", quartieri=quartieri)
+
+
 
 
 if __name__ == '__main__':
