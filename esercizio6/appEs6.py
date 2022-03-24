@@ -85,13 +85,36 @@ def sceltaRis():
 
 
 
+fontanelle = gpd.read_file("/workspace/Flask/esercizio6/zip files/Fontanelle (1).zip")
+
 @app.route('/fontanelle', methods=['GET'])
-def fontanelle():
+def fontanelle2():
   quartieri = quartieri_milano.NIL
   return render_template("fontanelle.html", quartieri=quartieri)
 
 
+@app.route('/fonatanellaRis', methods=['GET'])
+def fonatanellaRis():
+  return render_template('rispostafonta.html',PageTitle = "Matplotlib")
 
+
+
+@app.route('/fonatanellaRis2.png', methods=['GET'])
+def fonatanellaRis2():
+  quartiere_scelto = request.args["quartie"]
+
+  quart = quartieri_milano[quartieri_milano.NIL == quartiere_scelto]
+
+  fontanelle_compreso = fontanelle[fontanelle.within(quart.unary_union)]
+
+  fig, ax = plt.subplots(figsize = (12,8))
+
+  quart.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
+  fontanelle_compreso.to_crs(epsg=3857).plot(ax=ax)
+  contextily.add_basemap(ax=ax)
+  output = io.BytesIO()
+  FigureCanvas(fig).print_png(output)
+  return Response(output.getvalue(), mimetype='image/png')
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
