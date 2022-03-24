@@ -71,7 +71,6 @@ def scelta():
 @app.route('/sceltaRis', methods=['GET'])
 def sceltaRis():
   quartiere_inserito = request.args["quartie"]
-
   quart = quartieri_milano[quartieri_milano.NIL == quartiere_inserito]
 
   fig, ax = plt.subplots(figsize = (12,8))
@@ -83,7 +82,7 @@ def sceltaRis():
   return Response(output.getvalue(), mimetype='image/png')
 
 
-
+# fontanelle
 
 fontanelle = gpd.read_file("/workspace/Flask/esercizio6/zip files/Fontanelle (1).zip")
 
@@ -95,23 +94,24 @@ def fontanelle2():
 
 @app.route('/fonatanellaRis', methods=['GET'])
 def fonatanellaRis():
-  return render_template('rispostafonta.html',PageTitle = "Matplotlib")
+  global quart, fontanelle_compreso
+
+  quartiere_inserito = request.args["quartie"]
+  quart = quartieri_milano[quartieri_milano.NIL == quartiere_inserito]
+  fontanelle_compreso = fontanelle[fontanelle.within(quart.unary_union)]
+  return render_template('rispostafonta.html', PageTitle = "Matplotlib", tabella = fontanelle_compreso.to_html())
 
 
 
 @app.route('/fonatanellaRis2.png', methods=['GET'])
 def fonatanellaRis2():
-  quartiere_scelto = request.args["quartie"]
-
-  quart = quartieri_milano[quartieri_milano.NIL == quartiere_scelto]
-
-  fontanelle_compreso = fontanelle[fontanelle.within(quart.unary_union)]
 
   fig, ax = plt.subplots(figsize = (12,8))
 
   quart.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
   fontanelle_compreso.to_crs(epsg=3857).plot(ax=ax)
   contextily.add_basemap(ax=ax)
+
   output = io.BytesIO()
   FigureCanvas(fig).print_png(output)
   return Response(output.getvalue(), mimetype='image/png')
