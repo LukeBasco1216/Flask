@@ -12,12 +12,14 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
-
+comuni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Com01012021_g.zip")
+province = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/ProvCM01012021_g.zip")
+regioni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Reg01012021_g.zip")
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  quartieri = [ item for item in quartieri_milano.NIL]
-  return render_template("homepage.html", quartieri=quartieri)
+  regioni = [ item for item in regioni.DEN_REG]
+  return render_template("homepage.html", regioni=regioni)
 
 
 if __name__ == '__main__':
