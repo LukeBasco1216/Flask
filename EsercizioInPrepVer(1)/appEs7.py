@@ -22,11 +22,33 @@ def HomeP():
   return render_template("home.html", reg=regioniList)
 
 
-  @app.route('/home', methods=['GET'])
+@app.route('/home', methods=['GET'])
 def HomeRis():
   reg_scelto = request.args["regione"]
+  df_reg_prov = pd.merge(regioni, province, how="right", on=["COD_REG"])
+  provinreg = df_reg_prov[df_reg_prov.DEN_REG == reg_scelto]
+  return render_template("homeris.html", province2=provinreg.DEN_UTS)
 
-  return render_template("home.html", reg=regioniList)
+
+
+@app.route('/sceltaprov', methods=['GET'])
+def sceltaprov():
+  # prende la provincia scelta
+  prov_scelto = request.args["province"]
+
+  # unisco i df di prov e com
+  df_prov_com = pd.merge(province, comuni, how="right", on=["COD_PROV"])
+  
+  # cerco la prov scelta nel df per avere i suoi comuni
+  com_del_prov = df_prov_com[df_prov_com.DEN_PROV == prov_scelto]
+
+  # faccio un groupby per aver i comuni avendo tutte le colonne ma eliminandole con il filter poi riordinandole da A a Z
+  comuni_ascendingTrue = com_del_prov.groupby(com_del_prov.COMUNE, as_index = False).count().filter(items = ["COMUNE"]).sort_values(by="COMUNE", ascending = True)
+
+  # lista dei comuni
+  lista_com = [ele for ele in comuni_ascendingTrue.COMUNE]
+
+  return render_template("provrisposta.html", lista_com=lista_com, prov_scelto = prov_scelto)
 
 
 if __name__ == '__main__':
