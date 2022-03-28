@@ -12,14 +12,21 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
-comuni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Com01012021_g.zip")
-province = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/ProvCM01012021_g.zip")
-regioni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Reg01012021_g.zip")
+comuni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Com01012021_g_WGS84.zip")
+province = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/ProvCM01012021_g_WGS84.zip")
+regioni = gpd.read_file("/workspace/Flask/EsercizioInPrepVer(1)/files/Reg01012021_g_WGS84.zip")
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  regioni = [ item for item in regioni.DEN_REG]
-  return render_template("homepage.html", regioni=regioni)
+  regioniList = [ item for item in regioni.DEN_REG]
+  return render_template("home.html", reg=regioniList)
+
+
+  @app.route('/home', methods=['GET'])
+def HomeRis():
+  reg_scelto = request.args["regione"]
+
+  return render_template("home.html", reg=regioniList)
 
 
 if __name__ == '__main__':
