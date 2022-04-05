@@ -12,11 +12,26 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 stazioni = pd.read_csv("/workspace/Flask/correzioneVer/correzioneFilaA/file/coordfix_ripetitori_radiofonici_milano_160120_loc_final.csv", sep=";")
-
-
+stazioni_geo = gpd.read_file("/workspace/Flask/correzioneVer/correzioneFilaA/file/stazioniradio.geojson")
+quartieri = gpd.read_file("/workspace/Flask/esercizio6/zip files/ds964_nil_wm (2).zip")
 @app.route('/', methods=['GET'])
 def HomeP():
     return render_template("home.html")
+
+
+@app.route('/selezione', methods=['GET'])
+def selezione():
+    scelta = request.args["scelta"]
+    if scelta == "es1":
+            # redirect, invece di usare render_template
+        return redirect("/numero")
+    elif scelta == "es2":
+            # redirect to
+        return redirect("/input")
+    else:
+            # redirect to
+        return redirect("/dropdown")
+
 
 @app.route('/numero', methods=['GET'])
 def numero():
@@ -46,18 +61,22 @@ def grafico():
     return Response(output.getvalue(), mimetype='image/png')
 
 
-@app.route('/selezione', methods=['GET'])
-def selezione():
-    scelta = request.args["scelta"]
-    if scelta == "es1":
-            # redirect, invece di usare render_template
-        return redirect("/numero")
-    elif scelta == "es2":
-            # redirect to
-        return redirect("/input")
-    else:
-            # redirect to
-        return redirect("/dropdown")
+@app.route('/input', methods=['GET'])
+def inputt():
+    return render_template("link2.html")
+
+
+@app.route('/ricerca', methods=['GET'])
+def ricerca():
+    # predni il quartiere inserito
+    quartinserito = request.args["quartiere"]
+    # cercare nel dataframe dei quartieri il quartiere inserito
+    quartiere = quartieri[quartieri.NIL.str.contains(quartinserito)]
+    # cercare gli stazioni all'interno del quartiere inserito
+    stazquartiere = stazioni_geo[stazioni_geo.within(quartiere.geometry.squeeze())]
+
+    return render_template("elenco1.html", tabella = stazquartiere.to_html())
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
