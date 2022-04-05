@@ -113,7 +113,7 @@ def sceltastazione():
     # cercare il quartiere che contiene la stazione scelta
     quartiere2 = quartieri[quartieri.contains(stazioneutente.geometry.squeeze())]
 
-    return render_template("listastazione.html", quartiere2 = quartiere2)
+    return render_template("listastazione.html", quartiere2 = quartiere2.NIL)
 
 @app.route('/mappaquartiere', methods=['GET'])
 def mappaquartiere():
