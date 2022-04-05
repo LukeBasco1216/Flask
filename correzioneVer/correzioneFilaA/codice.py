@@ -68,7 +68,8 @@ def inputt():
 
 @app.route('/ricerca', methods=['GET'])
 def ricerca():
-    # predni il quartiere inserito
+    global quartiere, stazquartiere
+    # prendi il quartiere inserito
     quartinserito = request.args["quartiere"]
     # cercare nel dataframe dei quartieri il quartiere inserito
     quartiere = quartieri[quartieri.NIL.str.contains(quartinserito)]
@@ -77,6 +78,55 @@ def ricerca():
 
     return render_template("elenco1.html", tabella = stazquartiere.to_html())
 
+@app.route('/mappa', methods=['GET'])
+def mappa():
+        # costruzione della mappa 
+
+    fig, ax = plt.subplots(figsize = (12,8))
+
+    quartiere.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
+    stazquartiere.to_crs(epsg=3857).plot(ax=ax, markersize = 6, color='red')
+    contextily.add_basemap(ax=ax)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+
+
+@app.route('/dropdown', methods=['GET'])
+def dropdown():
+    # trasformare in una lista la colonna OPERATORE 
+    nomistazioni = stazioni_geo.OPERATORE.to_list()
+    # elimina i duplicati con set
+    nomistazioni = list(set(nomistazioni))
+    # ordinare da A a Z, vengono prima i numeri perche vengono ordinati in base al codice ASCII
+    nomistazioni.sort()
+    return render_template("dropdown.html", stazioni = nomistazioni)
+
+@app.route('/sceltastazione', methods=['GET'])
+def sceltastazione():
+    global quartiere2, stazioneutente
+    # prendi la stazione scelta
+    stazionescelto = request.args["Stazione"]
+    # cercare nel dataframe dei stazioni_geo la stazione scelta
+    stazioneutente = stazioni_geo[stazioni_geo.OPERATORE == stazionescelto]
+    # cercare il quartiere che contiene la stazione scelta
+    quartiere2 = quartieri[quartieri.contains(stazioneutente.geometry.squeeze())]
+
+    return render_template("listastazione.html", quartiere2 = quartiere2)
+
+@app.route('/mappaquartiere', methods=['GET'])
+def mappaquartiere():
+        # costruzione della mappa 
+
+    fig, ax = plt.subplots(figsize = (12,8))
+
+    quartiere2.to_crs(epsg=3857).plot(ax=ax, alpha=0.5, edgecolor = "k", linewidth = 4)
+    stazioneutente.to_crs(epsg=3857).plot(ax=ax, markersize = 6, color='red')
+    contextily.add_basemap(ax=ax)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
