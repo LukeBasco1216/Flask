@@ -20,6 +20,9 @@ quartieri = gpd.read_file("/workspace/Flask/esercizio6/zip files/ds964_nil_wm (2
 def HomeP():
     return render_template("home.html")
 
+
+
+
 @app.route('/link1', methods=['GET'])
 def link1():
     quartordinati = quartieri.groupby(["NIL"], as_index = False).count().filter(items = ["NIL"]).sort_values(by="NIL", ascending = True)
@@ -66,6 +69,7 @@ def inputt():
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
+
 
 
 
