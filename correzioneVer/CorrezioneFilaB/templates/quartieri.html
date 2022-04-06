@@ -1,0 +1,12 @@
+<form action="/sceltarad" method = "GET">
+
+    <!-- radio button -->
+    <p>quartiere: <br>
+        <br>
+        {% for item in lista%}
+        <input type = "radio" name = "quartiere" value="{{item}}" />{{item}} <br>
+        {%endfor%}
+    </p>
+ 
+    <p><input type = "submit" value = "Submit" /></p>
+</form>
