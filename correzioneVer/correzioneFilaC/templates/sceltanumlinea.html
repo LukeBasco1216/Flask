@@ -1,0 +1,12 @@
+<form action="/scelta" method = "GET">
+
+    <!-- menu a tendina -->
+    numero linea: <select name="linea">
+        {%for i in num%}
+        <option value="{{i}}" >{{i}}</option>
+        {%endfor%}
+      </select>
+
+
+    <p><input type = "submit" value = "Submit" /></p>
+</form>
