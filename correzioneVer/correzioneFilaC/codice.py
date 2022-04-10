@@ -40,12 +40,15 @@ def eser1():
 
 @app.route('/input', methods=['GET'])
 def inputt():
+  # prendo i valori inseriti trasformandoli in float cosi funziona anche se mette una virgola(punto)
   val1 = float(request.args["val1"])
   val2 = float(request.args["val2"])
   if val1 < val2:
+    #prendo le linee tra la lunghezza inserita ordinandolo dal 1 in poi
     percorsi = linee[(linee.lung_km > val1) & (linee.lung_km < val2)][["linea", "lung_km", "num_ferm" , "mezzo", "percorso", "nome", "tipo_perc"]].sort_values(by= "linea", ascending = True)
     return render_template("elencolinee.html", tabella = percorsi.to_html())
   else:
+    # se il primo val è magg del secondo ritorna nella stessa pag eliminando cosa c'era scritto
     return render_template("inserimentoval.html")
 
 
@@ -56,24 +59,30 @@ def eser2():
 
 @app.route('/inputquart', methods=['GET'])
 def inputquart():
+  # prendo il quartiere inserito
   quartins = request.args["quart"]
+  # cerco nel df il quartiere inserito per la sua geometria
   quartiere = quartieri[quartieri.NIL.str.contains(quartins)]
+  # cerco nel df le linee che attraversano il quartiere inserito prendendo solo la linea e il nome della linea
   lineeInquart = linee[linee.intersects(quartiere.geometry.squeeze())][["linea", "nome"]].sort_values(by = "linea", ascending = True)
   return render_template("elencolineequart.html", tabella = lineeInquart.to_html())
 
 
 @app.route('/eser3', methods=['GET'])
 def eser3():
+  # prendo le linee eliminando i duplicati e ordinandolo dal 1 in poi
   return render_template("sceltanumlinea.html", num = linee["linea"].drop_duplicates().sort_values( ascending = True))
 
 @app.route('/scelta', methods=['GET'])
 def scelta():
+  # prendo la linea scelta 
   numlinea = request.args["linea"]
+  # cerco nel df la linea inserita per la sua geometria
   lineageometria = linee[linee.linea == numlinea]
 
   # faccio l'immagine
   fig, ax = plt.subplots(figsize = (12,8))
-  
+
   
   lineageometria.to_crs(epsg=3857).plot(ax=ax, edgecolor="k")
   quartieri.to_crs(epsg=3857).plot(ax=ax, facecolor= "none", edgecolor="red")
