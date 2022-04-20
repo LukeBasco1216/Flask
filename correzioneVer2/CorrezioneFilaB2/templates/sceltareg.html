@@ -1,0 +1,10 @@
+<form action="/selezionereg" method = "GET">
+
+
+    {%for ele in reg%}
+    <input type="radio" name = "regione" value="{{ele}}">{{ele}}</input><br>
+    {%endfor}
+
+
+    <p><input type = "submit" value = "Submit" /></p>
+</form>
