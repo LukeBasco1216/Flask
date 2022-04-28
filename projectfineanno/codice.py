@@ -1,6 +1,3 @@
-# realizziamo un sito web che restituisca la mappa dei quartieri di milano.
-# ci deve essere una homepage con un link "quartieri di milano"
-# cliccando su questo link si deve visualizzare la mappa e quartieri di milano 
 
 from flask import Flask, render_template, send_file, make_response, url_for, Response, request
 app = Flask(__name__)
