@@ -1,0 +1,8 @@
+.container {
+    border: solid 10px;
+    color:green;
+}
+.container p{
+    
+    color:black;
+}
