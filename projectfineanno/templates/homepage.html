@@ -11,8 +11,25 @@
 </head>
 
 <body>
-    <div class="container">
-        <p>hello world!</p>
+    
+    <p id="Namesite"><Strong id="blue">Qui</Strong><Strong id="orange">Va</Strong><Strong id="red">do</Strong></p> 
+    <div class="block_container">
+        <div style="width:200px;Text-align:center;float:left;">
+            <form action="/data" method = "GET">
+                <!-- input textbox -->
+                <p>nome dell'alloggio:<input type = "text" name = "Name" /></p>
+                <p><input type = "submit" value = "Submit" /></p>
+            </form>
+        </div>
+        <div style="Text-align:center;Width:200px;float:right">
+            <form action="/data" method = "GET">
+                <!-- input textbox -->
+                <p>scegli il nome della provincia: <select name="City">
+                    <option value=""></option>
+                  </select></p>
+                <p><input type = "submit" value = "Submit" /></p>
+            </form>
+        </div>
     </div>
 </body>
 
