@@ -8,10 +8,14 @@ body {
 #bloc1 {
     display:inline-block;
     vertical-align: middle;
+    margin-right:150px;
+    text-align: center;
 }
 #bloc2 {
     display:inline-block;
     vertical-align: middle;
+    margin-left:150px;
+    text-align: center;
 }
 #blue{
     color: #2973b8;
