@@ -30,41 +30,40 @@ body {
     width: 600px;
     height: 170px;
     background-color: azure;
-    /* display:flex; */
+}
+
+.contnomall{
+    position: relative;
+    width: 50%;
+}
+.contcatall{
+    position: relative;
+    width: 50%;
+    top: 10px;
 }
 
 /* text */
-#nomealloggio{
-    /* vertical-align: top;
-    text-align: left; */
-    display: inline-block;
-    vertical-align: top;
+
+/* #nomealloggio{
+    position:relative;
+    top: 10px;
+    left: 10px;
 
 }
-#categoriaalloggio{
-    display: inline-block;
-    vertical-align: top;
+#categoriaalloggio, #telefono{
+    position:relative;
+    top: 20px;
+    font-size: 20px;
+
 }
-#indirizzoalloggio{
-    display: inline-block;
-    vertical-align: top;
-}
-#postaelettronica{
-    display: inline-block;
-    vertical-align: top;
-}
-#telefono {
-    display: inline-block;
-    vertical-align: top;
-}
-#attrezzature{
-    display: inline-block;
-    vertical-align: top;
-}
-#cartedipag{
-    display: inline-block;
-    vertical-align: top;
-}
+#indirizzoalloggio, #postaelettronica{
+    position:relative;
+    top: 70px;
+    left: 10px;
+
+} */
+
+
 /* colors */
 #blue{
     color: #2973b8;
