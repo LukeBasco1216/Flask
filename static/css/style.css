@@ -35,11 +35,19 @@ body {
 .contnomall{
     position: relative;
     width: 50%;
+    left: 15px;
 }
-.contcatall{
-    position: relative;
-    width: 50%;
-    top: 10px;
+
+.contcatall, .contindall{
+    width: 45%;
+    float: left;
+    margin-left: 15px;
+}
+
+.contpostall, .contteleall{
+    width: 45%;
+    float: left;
+    margin-left: 15px;
 }
 
 /* text */
