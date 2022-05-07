@@ -1,0 +1,85 @@
+body {
+    background-color: #c9e2fc;
+}
+
+
+/* divs   */
+.block_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+#bloc1 {
+    display:inline-block;
+    vertical-align: middle;
+    margin-right:150px;
+    text-align: center;
+}
+#bloc2 {
+    display:inline-block;
+    vertical-align: middle;
+    margin-left:150px;
+    text-align: center;
+}
+.containertab{
+    float: left;
+    border: 2px solid #2973b8;
+    margin-top: 150px;
+    margin-left: 35px;
+    border-radius: 15px 50px;
+    width: 600px;
+    height: 170px;
+    background-color: azure;
+}
+
+.contnomall{
+    position: relative;
+    width: 50%;
+}
+.contcatall{
+    position: relative;
+    width: 50%;
+    top: 10px;
+}
+
+/* text */
+
+/* #nomealloggio{
+    position:relative;
+    top: 10px;
+    left: 10px;
+
+}
+#categoriaalloggio, #telefono{
+    position:relative;
+    top: 20px;
+    font-size: 20px;
+
+}
+#indirizzoalloggio, #postaelettronica{
+    position:relative;
+    top: 70px;
+    left: 10px;
+
+} */
+
+
+/* colors */
+#blue{
+    color: #2973b8;
+    font-family: 'Montserrat';
+}
+#orange{
+    color: #e37a1f;
+    font-family: 'Montserrat';
+}
+#red{
+    color: #a3171a;
+    font-family: 'Montserrat';
+}
+#Namesite{
+    font-size: 0.8cm;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 13px;
+}
