@@ -8,6 +8,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="static/css/style.css">
+    <!-- static/css/style.css -->
 </head>
 
 <body>
@@ -22,7 +23,7 @@
             </form>
         </div>
         <div id="bloc2">
-            <form action="/data" method = "GET">
+            <form action="/data1" method = "GET">
                 <!-- input textbox -->
                 <p>scegli il nome della provincia: <select name="City">
                     <option value=""></option>
@@ -33,22 +34,25 @@
     </div>
     <div class="containertab">
         <div class="contnomall">
-            <h3 id="nomealloggio"> nome</h3>
+            <h3 id="nomealloggio"> {{nome}}</h3>
         </div>
         <div class="contcatall">
-            <p id="categoriaalloggio"> categoria</p>
+            <p id="categoriaalloggio"> {{cate}}</p>
         </div>
         <div class="contindall">
-            <p id="indirizzoalloggio"> indirizzo</p>
+            <p id="indirizzoalloggio"> {{ind}}</p>
         </div>
         <div class="contpostall">
-            <p id="postaelettronica"> postaelettronica</p>
+            <p id="postaelettronica"> {{postael}}</p>
         </div>
         <div class="contteleall">
-            <p id="telefono"> telefono</p>
+            <p id="telefono"> {{telefono}}</p>
         </div>
         
     </div>
+    <iframe src="/mappa" class="map"></iframe>
 </body>
+
+</html>
 
 </html>

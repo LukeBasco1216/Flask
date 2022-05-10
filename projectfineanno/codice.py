@@ -28,7 +28,7 @@ hotellombardia = pd.read_csv("/workspace/Flask/projectfineanno/files/Regione-Lom
 @app.route('/', methods=['GET'])
 def HomeP():
   alberghi = hotellombardia[hotellombardia.Categoria == "Alberghiere"]
-  return render_template("homepage.html")
+  return render_template("homepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
 
 # @app.route('/', methods=['GET'])
 # def HomeP():
@@ -36,7 +36,26 @@ def HomeP():
 #   m.save("testfolium.html")
 #   return m
 
+@app.route('/data', methods=['GET'])
+def ricerca():
+  nome = request.args["Name"]
+  alloggio = hotellombardia[hotellombardia["Denominazione struttura"].str.contains(nome)]
+  # per far si che nella html non riporti anche l'indice e il suo dtype
+  nome = alloggio["Denominazione struttura"].tolist()
+  cate = alloggio["Categoria"].tolist()
+  ind = alloggio["Indirizzo"].tolist()
+  postael = alloggio["Posta elettronica"].tolist()
+  telefono = alloggio["Telefono"].tolist()
+  return render_template("homepage.html", nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
+  telefono = telefono[0])
 
+
+
+@app.route('/mappa', methods=['GET'])
+def mappa():
+  m = folium.Map(location=[45.4, 9.1])
+  m.save("templates/testfolium.html")
+  return render_template("testfolium.html")
 
 
 if __name__ == '__main__':
