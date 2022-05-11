@@ -1,6 +1,6 @@
 body {
-    /* background-color: #c9e2fc; */
-    background-image: url("/workspace/Flask/projectfineanno/static/images/minimalist-calming-wallpapers-png.png");
+    background-color: #c9e2fc;
+    /* background-image: url("/workspace/Flask/projectfineanno/static/images/minimalist-calming-wallpapers-png.png"); */
 }
 
 
@@ -29,7 +29,7 @@ body {
     margin-left: 35px;
     border-radius: 20px 50px;
     width: 700px;
-    height: auto;
+    height: 170px;
     /* 170px */
     background-color: azure;
 }
@@ -99,6 +99,6 @@ body {
     position: absolute;
     width: 960px;
     height: 700px;
-    top: 23%;
+    top: 26%;
     left: 50%;
 }

@@ -13,7 +13,11 @@
 
 <body>
     
+    <!-- title -->
     <p id="Namesite"><Strong id="blue">Qui</Strong><Strong id="orange">Va</Strong><Strong id="red">do</Strong></p> 
+    <!-- line -->
+    <hr style="width:100%;text-align:left;margin-left:0;height:2px;border-width:0;color:gray;background-color:gray">
+    <!-- table -->
     <div class="block_container">
         <div id="bloc1">
             <form action="/data" method = "GET">
@@ -32,23 +36,43 @@
             </form>
         </div>
     </div>
-    <div class="containertab">
-        <div class="contnomall">
-            <h3 id="nomealloggio"> {{nome}}</h3>
-        </div>
-        <div class="contcatall">
-            <p id="categoriaalloggio"> {{cate}}</p>
-        </div>
-        <div class="contindall">
-            <p id="indirizzoalloggio"> {{ind}}</p>
-        </div>
-        <div class="contpostall">
-            <p id="postaelettronica"> {{postael}}</p>
-        </div>
-        <div class="contteleall">
-            <p id="telefono"> {{telefono}}</p>
-        </div>
+
+
+
+
+
+    
+
+    <script lang="javascript">
+        var htmlElements = "";
+        var array =[1,2,3,4];
+        for (var i = 0; i < array.length; i++) {
+            htmlElements += '<div class="containertab"><div class="contnomall"><h3 id="nomealloggio"> {{nome}}</h3></div><div class="contcatall"><p id="categoriaalloggio"> {{cate}}</p></div><div class="contindall"><p id="indirizzoalloggio"> {{ind}}</p></div><div class="contpostall"><p id="postaelettronica"> {{postael}}</p></div><div class="contteleall"><p id="telefono"> {{telefono}}</p></div></div>';
+        }
+        var container = document.getElementsById("containerprinc");
+        containerprinc.innerHTML = htmlElements;
+    </script>
+
+    <div id="containerprinc">
         
+        <!-- <div class="containertab">
+            <div class="contnomall">
+                <h3 id="nomealloggio"> {{nome}}</h3>
+            </div>
+            <div class="contcatall">
+                <p id="categoriaalloggio"> {{cate}}</p>
+            </div>
+            <div class="contindall">
+                <p id="indirizzoalloggio"> {{ind}}</p>
+            </div>
+            <div class="contpostall">
+                <p id="postaelettronica"> {{postael}}</p>
+            </div>
+            <div class="contteleall">
+                <p id="telefono"> {{telefono}}</p>
+            </div>
+            
+        </div> -->
     </div>
     <iframe src="/mappa" class="map"></iframe>
 </body>
