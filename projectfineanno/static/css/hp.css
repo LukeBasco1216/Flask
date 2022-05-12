@@ -1,3 +1,4 @@
+
 body {
     background-color: #c9e2fc;
     /* background-image: url("/workspace/Flask/projectfineanno/static/images/minimalist-calming-wallpapers-png.png"); */
@@ -92,13 +93,4 @@ body {
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 13px;
-}
-
-/* mappa */
-.map{
-    position: absolute;
-    width: 960px;
-    height: 700px;
-    top: 26%;
-    left: 100%;
 }

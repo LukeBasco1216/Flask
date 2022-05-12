@@ -28,7 +28,7 @@ hotellombardia = pd.read_csv("/workspace/Flask/projectfineanno/files/Regione-Lom
 @app.route('/', methods=['GET'])
 def HomeP():
   alberghi = hotellombardia[hotellombardia.Categoria == "Alberghiere"]
-  return render_template("homepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
+  return render_template("newhomepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
 
 # @app.route('/', methods=['GET'])
 # def HomeP():

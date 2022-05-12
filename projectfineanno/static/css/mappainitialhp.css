@@ -1,0 +1,11 @@
+
+
+
+/* mappa */
+.map{
+    position: absolute;
+    width: 60%;
+    height: 700px;
+    top: 26%;
+    left: 20%;
+}
