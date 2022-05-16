@@ -23,7 +23,7 @@ from folium import plugins
 
 
 
-hotellombardia = pd.read_csv("/workspace/Flask/projectfineanno/files/Regione-Lombardia---Mappa-delle-strutture-ricettive.csv", sep=";", encoding='ISO-8859-1', on_bad_lines='skip')
+alloggiMilano = gpd.read_file("/workspace/Flask/projectfineanno/files/ds593_strutture-ricettive-alberghiere-e-extra-alberghier_cg7c-84a9_final_geojson.zip", sep=";")
 
 @app.route('/', methods=['GET'])
 def HomeP():
@@ -38,22 +38,25 @@ def HomeP():
 
 @app.route('/data', methods=['GET'])
 def ricerca():
-  nome = request.args["Name"]
-  alloggio = hotellombardia[hotellombardia["Denominazione struttura"].str.contains(nome)]
-  # per far si che nella html non riporti anche l'indice e il suo dtype
-  nome = alloggio["Denominazione struttura"].tolist()
-  cate = alloggio["Categoria"].tolist()
-  ind = alloggio["Indirizzo"].tolist()
-  postael = alloggio["Posta elettronica"].tolist()
-  telefono = alloggio["Telefono"].tolist()
-  return render_template("homepage.html", nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
-  telefono = telefono[0])
+  # nome = request.args["Name"]
+  # alloggio = hotellombardia[hotellombardia["Denominazione struttura"].str.contains(nome)]
+  # # per far si che nella html non riporti anche l'indice e il suo dtype
+  # nome = alloggio["Denominazione struttura"].tolist()
+  # cate = alloggio["Categoria"].tolist()
+  # ind = alloggio["Indirizzo"].tolist()
+  # postael = alloggio["Posta elettronica"].tolist()
+  # telefono = alloggio["Telefono"].tolist()
+
+  # , nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
+  # telefono = telefono[0]
+
+  return render_template("homepage.html")
 
 
 
 @app.route('/mappa', methods=['GET'])
 def mappa():
-  m = folium.Map(location=[45.4, 9.1])
+  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
   m.save("templates/testfolium.html")
   return render_template("testfolium.html")
 
