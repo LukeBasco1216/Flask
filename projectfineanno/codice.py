@@ -24,10 +24,13 @@ from folium import plugins
 
 
 alloggiMilano = gpd.read_file("/workspace/Flask/projectfineanno/files/ds593_strutture-ricettive-alberghiere-e-extra-alberghier_cg7c-84a9_final_geojson.zip", sep=";")
+quartieri = gpd.read_file(")
+
+
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  alberghi = hotellombardia[hotellombardia.Categoria == "Alberghiere"]
+  alloggionelquart = alloggiMilano[alloggiMilano.within(quartiere.geometryy.squeeze())]
   return render_template("newhomepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
 
 # @app.route('/', methods=['GET'])
