@@ -21,17 +21,19 @@
     <!-- table -->
     <div class="block_container">
         <div id="bloc1">
-            <form action="/data" method = "GET">
+            <form action="/servizio2" method = "GET">
                 <!-- input textbox -->
-                <p>nome dell'alloggio:<input type = "text" name = "Name" /></p>
+                <p>nome dell'alloggio:<input type = "text" name = "namealloggio" /></p>
                 <p><input type = "submit" value = "Submit" /></p>
             </form>
         </div>
         <div id="bloc2">
             <form action="/data1" method = "GET">
                 <!-- input textbox -->
-                <p>scegli il nome del quartiere: <select name="City">
+                <p>scegli il nome del quartiere: <select name="quartiere">
+                    {%for ele in %}
                     <option value=""></option>
+
                   </select></p>
                 <p><input type = "submit" value = "Submit" /></p>
             </form>

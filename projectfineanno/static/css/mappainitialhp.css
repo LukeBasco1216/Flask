@@ -2,10 +2,17 @@
 
 
 /* mappa */
-.map{
+.map1{
     position: absolute;
     width: 60%;
     height: 700px;
     top: 26%;
-    left: 20%;
+    left: 50%;
+}
+.map{
+    position: absolute;
+    width: 960px;
+    height: 700px;
+    top: 26%;
+    left: 26%;
 }

@@ -24,13 +24,13 @@ from folium import plugins
 
 
 alloggiMilano = gpd.read_file("/workspace/Flask/projectfineanno/files/ds593_strutture-ricettive-alberghiere-e-extra-alberghier_cg7c-84a9_final_geojson.zip", sep=";")
-quartieri = gpd.read_file(")
+quartieri = gpd.read_file("/workspace/Flask/projectfineanno/files/NIL_WM.zip")
 
 
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  alloggionelquart = alloggiMilano[alloggiMilano.within(quartiere.geometryy.squeeze())]
+  
   return render_template("newhomepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
 
 # @app.route('/', methods=['GET'])
@@ -39,10 +39,10 @@ def HomeP():
 #   m.save("testfolium.html")
 #   return m
 
-@app.route('/data', methods=['GET'])
+@app.route('/servizio2', methods=['GET'])
 def ricerca():
-  # nome = request.args["Name"]
-  # alloggio = hotellombardia[hotellombardia["Denominazione struttura"].str.contains(nome)]
+  nomeins = request.args["namealloggio"]
+  alloggio = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"].str.contains(nomeins)]
   # # per far si che nella html non riporti anche l'indice e il suo dtype
   # nome = alloggio["Denominazione struttura"].tolist()
   # cate = alloggio["Categoria"].tolist()
