@@ -25,24 +25,62 @@ from folium import plugins
 
 alloggiMilano = gpd.read_file("/workspace/Flask/projectfineanno/files/ds593_strutture-ricettive-alberghiere-e-extra-alberghier_cg7c-84a9_final_geojson.zip", sep=";")
 quartieri = gpd.read_file("/workspace/Flask/projectfineanno/files/NIL_WM.zip")
+alloggiMilano.dropna(inplace = True)
 
 
 
 @app.route('/', methods=['GET'])
 def HomeP():
-  
-  return render_template("newhomepage.html")#, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
+    #, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
+  return render_template("homepage.html", quartieri = quartieri.NIL) 
 
-# @app.route('/', methods=['GET'])
-# def HomeP():
-#   m = folium.Map(location=[45.5236, -122.6750])
-#   m.save("testfolium.html")
-#   return m
+@app.route('/mappapaginainiziale', methods=['GET'])
+def mappa():
+  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
 
-@app.route('/servizio2', methods=['GET'])
+  # minimap
+  minimap = plugins.MiniMap(toggle_display = True)
+  m.add_child(minimap)
+
+  # fullscreem
+  plugins.Fullscreen(position="topright").add_to(m)
+
+  # marker
+  # for i in range(0,len(alloggiMilano)):
+  #  folium.Marker(location=[alloggiMilano.iloc[i]['geo_y'], alloggiMilano.iloc[i]['geo_x']] , popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']).add_to(m)
+  # , tooltip =alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
+  for (index, row) in alloggiMilano.iterrows():
+    
+    folium.Marker(location= [row['geo_x'], row['geo_y']], popup=row['DENOMINAZIONE_STRUTTURA']).add_to(m)
+
+  m.save("templates/mappapagin.html")
+  return render_template("mappapagin.html")
+
+
+
+
+@app.route('/servizio3', methods=['GET'])
 def ricerca():
-  nomeins = request.args["namealloggio"]
-  alloggio = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"].str.contains(nomeins)]
+
+  quartiere = request.args["quartiere"]
+  quartiereUtente = quartieri[quartieri["NIL"] == quartiere]
+  Hotelquart = alloggiMilano[alloggiMilano.within(quartiereUtente.geometry.squeeze())]
+
+
+  return render_template("responseserv3.html", quartieri = quartieri.NIL)
+
+@app.route('/mappaserv3', methods=['GET'])
+def mappaserv3():
+  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
+
+  # minimap
+  minimap = plugins.MiniMap(toggle_display = True)
+  m.add_child(minimap)
+
+  m.save("templates/mapserv3.html")
+  return render_template("mapserv3.html")
+
+
   # # per far si che nella html non riporti anche l'indice e il suo dtype
   # nome = alloggio["Denominazione struttura"].tolist()
   # cate = alloggio["Categoria"].tolist()
@@ -52,17 +90,6 @@ def ricerca():
 
   # , nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
   # telefono = telefono[0]
-
-  return render_template("homepage.html")
-
-
-
-@app.route('/mappa', methods=['GET'])
-def mappa():
-  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
-  m.save("templates/testfolium.html")
-  return render_template("testfolium.html")
-
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)

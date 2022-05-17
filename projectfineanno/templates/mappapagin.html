@@ -23,7 +23,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_d9c2a59dcc0a65e86f675631a1601e81 {
+                #map_38cac4b9a698dd42a7f5407f6021715e {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -32,16 +32,20 @@
                 }
             </style>
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.css"/>
 </head>
 <body>    
     
-            <div class="folium-map" id="map_d9c2a59dcc0a65e86f675631a1601e81" ></div>
+            <div class="folium-map" id="map_38cac4b9a698dd42a7f5407f6021715e" ></div>
         
 </body>
 <script>    
     
-            var map_d9c2a59dcc0a65e86f675631a1601e81 = L.map(
-                "map_d9c2a59dcc0a65e86f675631a1601e81",
+            var map_38cac4b9a698dd42a7f5407f6021715e = L.map(
+                "map_38cac4b9a698dd42a7f5407f6021715e",
                 {
                     center: [45.46, 9.2],
                     crs: L.CRS.EPSG3857,
@@ -55,9 +59,25 @@
 
         
     
-            var tile_layer_2dcb5cba27aff6255410ddc0884714a5 = L.tileLayer(
+            var tile_layer_8c918e8f1dc60554e797f45f0feea8ff = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_d9c2a59dcc0a65e86f675631a1601e81);
+            ).addTo(map_38cac4b9a698dd42a7f5407f6021715e);
+        
+    
+            var tile_layer_ce762461fd528cd6ff40bf0c6fc8b4de = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_dc4fabb989078eebf3adf8442ba62412 = new L.Control.MiniMap(
+                tile_layer_ce762461fd528cd6ff40bf0c6fc8b4de,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": true, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_38cac4b9a698dd42a7f5407f6021715e.addControl(mini_map_dc4fabb989078eebf3adf8442ba62412);
+        
+    
+            L.control.fullscreen(
+                {"forceSeparateButton": false, "position": "topright", "title": "Full Screen", "titleCancel": "Exit Full Screen"}
+            ).addTo(map_38cac4b9a698dd42a7f5407f6021715e);
         
 </script>

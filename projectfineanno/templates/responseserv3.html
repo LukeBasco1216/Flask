@@ -28,21 +28,26 @@
             </form>
         </div>
         <div id="bloc2">
-            <form action="/data1" method = "GET">
-                <!-- input textbox -->
-                <p>scegli il nome del quartiere: <select name="quartiere">
-                    {%for ele in %}
-                    <option value=""></option>
+            <form action="/servizio3" method = "GET">
+                 
+                    
+                <p>scegli il nome del quartiere: 
 
-                  </select></p>
-                <p><input type = "submit" value = "Submit" /></p>
+                    <select name="quartiere">
+                    {% for item in quartieri%}
+                    <option value="{{item}}">{{item}}</option>
+                    {%endfor%}
+                    </select>
+
+                <p>
+                <input type = "submit" value = "Submit" /></p>
             </form>
         </div>
     </div>
 
 
 
-    <iframe src="/mappa" class="map"></iframe>
+    <iframe src="/mappaserv3" class="map"></iframe>
 </body>
 
 </html>
