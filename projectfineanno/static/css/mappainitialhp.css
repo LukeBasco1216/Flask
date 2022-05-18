@@ -11,8 +11,12 @@
 }
 .map{
     position: absolute;
-    width: 960px;
-    height: 700px;
-    top: 23%;
-    left: 26%;
+    /* width: 960px;
+    height: 700px; */
+    width: 60%;
+    height: 68.7%;
+    /* top: 23%;
+    left: 26%; */
+    top: 30%;
+    left: 20%;
 }

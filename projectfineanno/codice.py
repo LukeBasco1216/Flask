@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 ##
 import folium
 from folium import plugins
+from folium.plugins import FastMarkerCluster
 # import ipywidgets
 # import geocoder
 # import geopy
@@ -45,13 +46,17 @@ def mappa():
   # fullscreem
   plugins.Fullscreen(position="topright").add_to(m)
 
+  GORLA_COMMENDA = alloggiMilano[alloggiMilano[DENOMINAZIONE_STRUTTURA] == "GORLA COMMENDA"]
+  folium.Marker(locations=[GORLA_COMMENDA['geo_x'], GORLA_COMMENDA['geo_y']], popup=GORLA_COMMENDA['DENOMINAZIONE_STRUTTURA']).add_to(m)
   # marker
   # for i in range(0,len(alloggiMilano)):
-  #  folium.Marker(location=[alloggiMilano.iloc[i]['geo_y'], alloggiMilano.iloc[i]['geo_x']] , popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']).add_to(m)
-  # , tooltip =alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
-  for (index, row) in alloggiMilano.iterrows():
+  #  folium.Marker(location=[alloggiMilano.iloc[i]['geo_y'], alloggiMilano.iloc[i]['geo_x']] , popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']).add_to(m), tooltip =alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
+
+
+  # for (index, row) in alloggiMilano.iterrows():
     
-    folium.Marker(location= [row['geo_x'], row['geo_y']], popup=row['DENOMINAZIONE_STRUTTURA']).add_to(m)
+  #   folium.Marker(location= [row['geo_x'], row['geo_y']], popup=row['DENOMINAZIONE_STRUTTURA']).add_to(m)
+
 
   m.save("templates/mappapagin.html")
   return render_template("mappapagin.html")
