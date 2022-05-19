@@ -1,0 +1,34 @@
+  # # per far si che nella html non riporti anche l'indice e il suo dtype
+  # nome = alloggio["Denominazione struttura"].tolist()
+  # cate = alloggio["Categoria"].tolist()
+  # ind = alloggio["Indirizzo"].tolist()
+  # postael = alloggio["Posta elettronica"].tolist()
+  # telefono = alloggio["Telefono"].tolist()
+
+  # , nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
+  # telefono = telefono[0]
+
+
+# @app.route('/servizio2', methods=['GET'])
+# def servizio2():
+    
+#   alloggio = request.args["alloggio"]
+#   alloggioUtente = alloggimilano[alloggimilano["DENOMINAZIONE_STRUTTURA"].str.contains(alloggio)]
+  
+#   return render_template("homepage.html",servizionumero2 = alloggioUtente.to_html(),quartiere = quartieri["NIL"])
+
+
+
+
+
+
+
+
+  # marker
+  # for i in range(0,len(alloggiMilano)):
+  #  folium.Marker(location=[alloggiMilano.iloc[i]['geo_y'], alloggiMilano.iloc[i]['geo_x']] , popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']).add_to(m), tooltip =alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
+
+
+  # for (index, row) in alloggiMilano.iterrows():
+    
+  #   folium.Marker(location= [row['geo_x'], row['geo_y']], popup=row['DENOMINAZIONE_STRUTTURA']).add_to(m)
