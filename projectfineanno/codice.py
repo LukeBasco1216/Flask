@@ -26,7 +26,7 @@ from folium.plugins import FastMarkerCluster
 
 alloggiMilano = gpd.read_file("/workspace/Flask/projectfineanno/files/ds593_strutture-ricettive-alberghiere-e-extra-alberghier_cg7c-84a9_final_geojson.zip", sep=";")
 quartieri = gpd.read_file("/workspace/Flask/projectfineanno/files/NIL_WM.zip")
-alloggiMilano.dropna(inplace = True)
+
 
 
 
@@ -46,8 +46,9 @@ def mappa():
   # fullscreem
   plugins.Fullscreen(position="topright").add_to(m)
 
-  GORLA_COMMENDA = alloggiMilano[alloggiMilano[DENOMINAZIONE_STRUTTURA] == "GORLA COMMENDA"]
-  folium.Marker(locations=[GORLA_COMMENDA['geo_x'], GORLA_COMMENDA['geo_y']], popup=GORLA_COMMENDA['DENOMINAZIONE_STRUTTURA']).add_to(m)
+  GORLA_COMMENDA = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"] == "GORLA COMMENDA"]
+  print(GORLA_COMMENDA)
+  folium.Marker(locations=[GORLA_COMMENDA['geo_x'], GORLA_COMMENDA['geo_y']]).add_to(m)
   # marker
   # for i in range(0,len(alloggiMilano)):
   #  folium.Marker(location=[alloggiMilano.iloc[i]['geo_y'], alloggiMilano.iloc[i]['geo_x']] , popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']).add_to(m), tooltip =alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
@@ -56,10 +57,8 @@ def mappa():
   # for (index, row) in alloggiMilano.iterrows():
     
   #   folium.Marker(location= [row['geo_x'], row['geo_y']], popup=row['DENOMINAZIONE_STRUTTURA']).add_to(m)
-
-
   m.save("templates/mappapagin.html")
-  return render_template("mappapagin.html")
+  return render_template("mappapagin.html",GORLA_COMMENDA = GORLA_COMMENDA.to_html())
 
 
 
@@ -95,6 +94,16 @@ def mappaserv3():
 
   # , nome = nome[0], cate = cate[0], ind = ind[0], postael = postael[0],
   # telefono = telefono[0]
+
+
+# @app.route('/servizio2', methods=['GET'])
+# def servizio2():
+    
+#   alloggio = request.args["alloggio"]
+#   alloggioUtente = alloggimilano[alloggimilano["DENOMINAZIONE_STRUTTURA"].str.contains(alloggio)]
+  
+#   return render_template("homepage.html",servizionumero2 = alloggioUtente.to_html(),quartiere = quartieri["NIL"])
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
