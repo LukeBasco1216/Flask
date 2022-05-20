@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 ##
 import folium
 from folium import plugins
-from folium.plugins import FastMarkerCluster
+from folium.plugins import MarkerCluster
+
 # import ipywidgets
 # import geocoder
 # import geopy
@@ -50,16 +51,20 @@ def mappapaginainiziale():
   # fullscreem
   plugins.Fullscreen(position="topright").add_to(m)
 
+
+  # marker cluster
+  marker_cluster = MarkerCluster().add_to(m)
+
   # marker
-
-  locations = alloggiMilano[['geo_x', 'geo_y']]
-  locationlist = locations.values.tolist()
-
-  for point in range(0, len(locationlist)):
-    folium.Marker(locationlist[point], popup=alloggiMilano['DENOMINAZIONE_STRUTTURA'][point]).add_to(m)
+  for i in range(0,len(alloggiMilano)):
+    
+   folium.Marker(
+      location=[alloggiMilano.iloc[i]['geo_x'], alloggiMilano.iloc[i]['geo_y']],
+      popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA'],
+   ).add_to(marker_cluster)
 
   m.save("templates/mappapagin.html")
-  return render_template("mappapagin.html",GORLA_COMMENDA = GORLA_COMMENDA.to_html())
+  return render_template("mappapagin.html", )
 
 
 
