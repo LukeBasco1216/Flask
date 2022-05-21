@@ -26,9 +26,11 @@ body {
     float: left;
     border: 2px solid #2973b8;
     margin-top: 150px;
-    margin-left: 35px;
+    /* margin-left: 35px; */
+    margin-left: 0.67%;
     border-radius: 20px 50px;
-    width: 700px;
+    /* width: 700px; */
+    width: 45%;
     height: 170px;
     /* 170px */
     background-color: azure;
@@ -46,33 +48,11 @@ body {
     margin-left: 15px;
 }
 
-.contpostall, .contteleall{
+.contquartall, .contcapall{
     width: 45%;
     float: left;
     margin-left: 15px;
 }
-
-/* text */
-
-/* #nomealloggio{
-    position:relative;
-    top: 10px;
-    left: 10px;
-
-}
-#categoriaalloggio, #telefono{
-    position:relative;
-    top: 20px;
-    font-size: 20px;
-
-}
-#indirizzoalloggio, #postaelettronica{
-    position:relative;
-    top: 70px;
-    left: 10px;
-
-} */
-
 
 /* colors */
 #blue{

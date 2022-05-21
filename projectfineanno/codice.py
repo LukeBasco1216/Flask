@@ -35,7 +35,6 @@ alloggiMilano = alloggiMilano[pd.notnull(alloggiMilano['geo_x'])]
 
 @app.route('/', methods=['GET'])
 def HomeP():
-    #, nome = hotellombardia.Denominazione struttura == "ALBERGO PAVONE"
   return render_template("homepage.html", quartieri = quartieri.NIL) 
 
 @app.route('/mappapaginainiziale', methods=['GET'])
@@ -64,7 +63,74 @@ def mappapaginainiziale():
    ).add_to(marker_cluster)
 
   m.save("templates/mappapagin.html")
-  return render_template("mappapagin.html", )
+  return render_template("mappapagin.html")
+
+
+
+
+@app.route('/servizio2', methods=['GET'])
+def servizio2():
+  alloggioinput = request.args["namealloggio"]
+  alloggio = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"].str.contains(alloggioinput)]
+
+  nome = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
+  cate = alloggio["CATEGORIA"].tolist()
+  ind = alloggio["INDIRIZZO"].tolist()
+  quart = alloggio["NIL"].tolist()
+  cap = alloggio["CAP"].tolist()
+  global latserv2, longserv2,nomeserv2
+  latserv2 = alloggio["geo_x"].tolist()
+  longserv2 = alloggio["geo_y"].tolist()
+  nomeserv2 = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
+
+  return render_template("responseserv2.html", quartieri = quartieri.NIL, nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0]) 
+
+
+
+@app.route('/mappaserv2', methods=['GET'])
+def mappaserv2():
+  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
+  # minimap
+  minimap = plugins.MiniMap(toggle_display = True)
+  m.add_child(minimap)
+  # fullscreem
+  plugins.Fullscreen(position="topright").add_to(m)
+  # marker
+  folium.Marker(location=[latserv2[0], longserv2[0]],popup=nomeserv2[0]).add_to(m)
+  m.save("templates/mapserv2.html")
+  return render_template("mapserv2.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

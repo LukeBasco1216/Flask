@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="static/css/mappainitialhp.css">
-    <link rel="stylesheet" href="static/css/hp.css">
+    <link rel="stylesheet" href="static/css/mappastyle.css">
+    <link rel="stylesheet" href="static/css/style.css">
     
 </head>
 
@@ -23,7 +23,7 @@
         <div id="bloc1">
             <form action="/servizio2" method = "GET">
                 <!-- input textbox -->
-                <p>nome dell'alloggio:<input type = "text" name = "Name" /></p>
+                <p>nome dell'alloggio:<input type = "text" name = "namealloggio" /></p>
                 <p><input type = "submit" value = "Submit" /></p>
             </form>
         </div>
@@ -42,43 +42,26 @@
             </form>
         </div>
     </div>
-
-
-
-
-
-    
-
-    <!-- <script lang="javascript">
-        var htmlElements = "";
-        var array =[1,2,3,4];
-        for (var i = 0; i < array.length; i++) {
-            htmlElements += '<div class="containertab"><div class="contnomall"><h3 id="nomealloggio"> {{nome}}</h3></div><div class="contcatall"><p id="categoriaalloggio"> {{cate}}</p></div><div class="contindall"><p id="indirizzoalloggio"> {{ind}}</p></div><div class="contpostall"><p id="postaelettronica"> {{postael}}</p></div><div class="contteleall"><p id="telefono"> {{telefono}}</p></div></div>';
-        }
-        var container = document.getElementsById("containerprinc");
-        containerprinc.innerHTML = htmlElements;
-    </script> -->
-
         
     <div class="containertab">
         <div class="contnomall">
             <h3 id="nomealloggio"> {{nome}}</h3>
         </div>
         <div class="contcatall">
-            <p id="categoriaalloggio"> {{cate}}</p>
+            <p id="categoriaalloggio">Categoria: {{cate}}</p>
         </div>
         <div class="contindall">
-            <p id="indirizzoalloggio"> {{ind}}</p>
+            <p id="indirizzoalloggio">Indirizzo: {{ind}}</p>
         </div>
-        <div class="contpostall">
-            <p id="postaelettronica"> {{postael}}</p>
+        <div class="contquartall">
+            <p id="quartierealloggio">Quartiere: {{quart}}</p>
         </div>
-        <div class="contteleall">
-            <p id="telefono"> {{telefono}}</p>
+        <div class="contcapall">
+            <p id="capalloggio">Cap: {{cap}}</p>
         </div>  
     </div>
     
-    <iframe src="/mappa" class="map"></iframe>
+    <iframe src="/mappaserv2" class="map1"></iframe>
 </body>
 
 </html>

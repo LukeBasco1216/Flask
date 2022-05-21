@@ -4,10 +4,13 @@
 /* mappa */
 .map1{
     position: absolute;
-    width: 60%;
-    height: 700px;
-    top: 23%;
-    left: 50%;
+    /* width: 60%;
+    height: 700px; */
+    width: 52.7%;
+    height: 68.7%;
+    /* top: 23%; */
+    top: 30%;
+    left: 47%;
 }
 .map{
     position: absolute;
