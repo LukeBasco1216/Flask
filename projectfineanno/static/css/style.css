@@ -30,7 +30,7 @@ body {
     border-radius: 20px 50px;
     /* width: 700px; */
     width: 45%;
-    height: 170px;
+    height: 280px;
     /* 170px */
     background-color: azure;
 }
@@ -53,10 +53,28 @@ body {
     margin-left: 15px;
 }
 
+.contclassifiall{
+    width: 95%;
+    float: left;
+    margin-left: 15px;
+}
+
 #explore {
     position:absolute;
     top: 12px;
     left: 93%;
+}
+
+.buttonsearchquart{
+    position: absolute;
+    top: 170px;
+    left:975px;
+}
+
+.buttonsearchall{
+    position: absolute;
+    top: 175px;
+    left:355px;
 }
 
 /* colors */
@@ -89,3 +107,30 @@ a:hover {
 a:visited {
     color: black;
   }
+
+/* stylebutton */
+.button{
+    background-color: #e8e8e8;
+    border: solid;
+    border-width: 2px;
+    border-color: grey;
+    color: #4d9ff6;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.button:hover{
+    background-color: #adabab;
+    border: solid;
+    border-width: 2px;
+    border-color: rgb(74, 73, 73);
+    color: #0c7cf4;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}

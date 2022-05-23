@@ -81,12 +81,13 @@ def servizio2():
     ind = alloggio["INDIRIZZO"].tolist()
     quart = alloggio["NIL"].tolist()
     cap = alloggio["CAP"].tolist()
+    classifi = alloggio["CLASSIFICAZIONE"].tolist()
     global latserv2, longserv2,nomeserv2
     latserv2 = alloggio["geo_x"].tolist()
     longserv2 = alloggio["geo_y"].tolist()
     nomeserv2 = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
 
-    return render_template("responseserv2.html", quartieri = quartieri.NIL, nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0]) 
+    return render_template("responseserv2.html", quartieri = quartieri.NIL, nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0], classifi = classifi[0]) 
 
 
 

@@ -23,42 +23,48 @@
         <div id="bloc1">
             <form action="/servizio2" method = "GET">
                 <!-- input textbox -->
-                <p>nome dell'alloggio:<input type = "text" name = "namealloggio" /></p>
-                <p><input type = "submit" value = "Cerca" /></p>
+                <h2>Nome dell'alloggio:  <br>  <input type = "text" name = "namealloggio" /></h2>
+                <div class="buttonsearchall">
+                    <input type = "submit" value = "Cerca" class="button"/>
+                </div>
             </form>
         </div>
         <div id="bloc2">
             <form action="/servizio3" method = "GET">
                 <!-- input textbox -->
-                <p>scegli il nome del quartiere: 
+                <h2>Scegli il nome del quartiere: <br>
                     <select name="quartiere">
                     {% for item in quartieri%}
                     <option value="{{item}}">{{item}}</option>
                     {%endfor%}
-
+                <h2>
                   </select>
-                <p>
-                <input type = "submit" value = "Cerca" /></p>
+                <div class="buttonsearchquart">
+                    <input type = "submit" value = "Cerca" class="button"/>
+                </div>
             </form>
         </div>
     </div>
         
     <div class="containertab">
         <div class="contnomall">
-            <h3 id="nomealloggio"> {{nome}}</h3>
+            <h3 id="nomealloggio" style="color: rgb(121, 39, 188);"> {{nome}}</h3>
         </div>
         <div class="contcatall">
-            <p id="categoriaalloggio">Categoria: {{cate}}</p>
+            <p id="categoriaalloggio"><strong>Categoria:</strong> {{cate}}</p>
         </div>
         <div class="contindall">
-            <p id="indirizzoalloggio">Indirizzo: {{ind}}</p>
+            <p id="indirizzoalloggio"><strong>Indirizzo:</strong> {{ind}}</p>
         </div>
         <div class="contquartall">
-            <p id="quartierealloggio">Quartiere: {{quart}}</p>
+            <p id="quartierealloggio"><strong>Quartiere:</strong> {{quart}}</p>
         </div>
         <div class="contcapall">
-            <p id="capalloggio">Cap: {{cap}}</p>
+            <p id="capalloggio"><strong>Cap:</strong> {{cap}}</p>
         </div>  
+        <div class="contclassifiall">
+            <p id="classifialloggio"><strong>Classificazione:</strong> {{classifi}}</p>
+        </div> 
     </div>
     
     <div id="explore">
