@@ -122,19 +122,6 @@ def mappaserv2():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/servizio3', methods=['GET'])
 def ricerca():
 
@@ -144,6 +131,8 @@ def ricerca():
 
 
   return render_template("responseserv3.html", quartieri = quartieri.NIL)
+
+
 
 @app.route('/mappaserv3', methods=['GET'])
 def mappaserv3():

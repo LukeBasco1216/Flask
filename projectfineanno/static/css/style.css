@@ -54,6 +54,12 @@ body {
     margin-left: 15px;
 }
 
+#explore {
+    position:absolute;
+    top: 12px;
+    left: 93%;
+}
+
 /* colors */
 #blue{
     color: #2973b8;
@@ -72,4 +78,12 @@ body {
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 13px;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+  }
+a:hover {
+    color: grey;;
 }
