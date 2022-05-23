@@ -8,7 +8,6 @@ body {
 .block_container {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
 }
 #bloc1 {
     display:inline-block;
@@ -87,3 +86,6 @@ a:link {
 a:hover {
     color: grey;;
 }
+a:visited {
+    color: black;
+  }

@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, send_file, make_response, url_for, Response, request
+from flask import Flask, render_template, send_file, make_response, url_for, Response, request, redirect
 app = Flask(__name__)
 import pandas as pd
 
@@ -41,7 +41,7 @@ def HomeP():
 def mappapaginainiziale():
 
   
-  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12)
+  m = folium.Map(location=[45.46, 9.20], max_zoom = 18, zoom_start = 12, min_zoom=7)
 
   # minimap
   minimap = plugins.MiniMap(toggle_display = True)
@@ -56,10 +56,10 @@ def mappapaginainiziale():
 
   # marker
   for i in range(0,len(alloggiMilano)):
-    
-   folium.Marker(
+    popup = "Name: " + alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA']
+    folium.Marker(
       location=[alloggiMilano.iloc[i]['geo_x'], alloggiMilano.iloc[i]['geo_y']],
-      popup=alloggiMilano.iloc[i]['DENOMINAZIONE_STRUTTURA'],
+      popup=popup,
    ).add_to(marker_cluster)
 
   m.save("templates/mappapagin.html")
@@ -71,19 +71,22 @@ def mappapaginainiziale():
 @app.route('/servizio2', methods=['GET'])
 def servizio2():
   alloggioinput = request.args["namealloggio"]
-  alloggio = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"].str.contains(alloggioinput)]
+  if alloggioinput =="":
+    return render_template("homepage.html", quartieri = quartieri.NIL)
+  else:
+    alloggio = alloggiMilano[alloggiMilano["DENOMINAZIONE_STRUTTURA"].str.contains(alloggioinput)]
 
-  nome = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
-  cate = alloggio["CATEGORIA"].tolist()
-  ind = alloggio["INDIRIZZO"].tolist()
-  quart = alloggio["NIL"].tolist()
-  cap = alloggio["CAP"].tolist()
-  global latserv2, longserv2,nomeserv2
-  latserv2 = alloggio["geo_x"].tolist()
-  longserv2 = alloggio["geo_y"].tolist()
-  nomeserv2 = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
+    nome = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
+    cate = alloggio["CATEGORIA"].tolist()
+    ind = alloggio["INDIRIZZO"].tolist()
+    quart = alloggio["NIL"].tolist()
+    cap = alloggio["CAP"].tolist()
+    global latserv2, longserv2,nomeserv2
+    latserv2 = alloggio["geo_x"].tolist()
+    longserv2 = alloggio["geo_y"].tolist()
+    nomeserv2 = alloggio["DENOMINAZIONE_STRUTTURA"].tolist()
 
-  return render_template("responseserv2.html", quartieri = quartieri.NIL, nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0]) 
+    return render_template("responseserv2.html", quartieri = quartieri.NIL, nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0]) 
 
 
 
@@ -127,9 +130,11 @@ def ricerca():
 
   quartiere = request.args["quartiere"]
   quartiereUtente = quartieri[quartieri["NIL"] == quartiere]
+  # prendi gli alloggi all'interno del quartiere
+  global Hotelquart
   Hotelquart = alloggiMilano[alloggiMilano.within(quartiereUtente.geometry.squeeze())]
 
-
+  
   return render_template("responseserv3.html", quartieri = quartieri.NIL)
 
 
@@ -141,6 +146,20 @@ def mappaserv3():
   # minimap
   minimap = plugins.MiniMap(toggle_display = True)
   m.add_child(minimap)
+
+  # marker cluster
+  marker_cluster = MarkerCluster().add_to(m)
+
+  # marker
+  for i in range(0,len(Hotelquart)):
+
+    iframe = folium.IFrame("Name: " + Hotelquart.iloc[i]['DENOMINAZIONE_STRUTTURA'])
+    popup = folium.Popup(iframe, min_width=175, max_width=175)
+    # popup = "Name: " + Hotelquart.iloc[i]['DENOMINAZIONE_STRUTTURA']
+    folium.Marker(
+      location=[Hotelquart.iloc[i]['geo_x'], Hotelquart.iloc[i]['geo_y']],
+      popup=popup,
+   ).add_to(marker_cluster)
 
   m.save("templates/mapserv3.html")
   return render_template("mapserv3.html")

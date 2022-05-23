@@ -23,15 +23,17 @@
         <div id="bloc1">
             <form action="/servizio2" method = "GET">
                 <!-- input textbox -->
-                <p>nome dell'alloggio:<input type = "text" name = "namealloggio" /></p>
-                <p><input type = "submit" value = "Submit" /></p>
+                <h2>Nome dell'alloggio:  <br>  <input type = "text" name = "namealloggio" /></h2>
+                <div class="buttonsearchall">
+                    <input type = "submit" value = "Cerca" class="button"/>
+                </div>
             </form>
         </div>
         <div id="bloc2">
             <form action="/servizio3" method = "GET">
                  
                     
-                <p>scegli il nome del quartiere: 
+                <h2>Scegli il nome del quartiere: <br>
 
                     <select name="quartiere">
                     {% for item in quartieri%}
@@ -39,8 +41,10 @@
                     {%endfor%}
                     </select>
 
-                <p>
-                <input type = "submit" value = "Submit" /></p>
+                <h2>
+                    <div class="buttonsearchquart">
+                        <input type = "submit" value = "Cerca" class="button" /></p>
+                    </div>
             </form>
         </div>
     </div>
