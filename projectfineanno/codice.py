@@ -37,6 +37,7 @@ alloggiMilano = alloggiMilano[pd.notnull(alloggiMilano['geo_x'])]
 def HomeP():
   return render_template("homepage.html", quartieri = quartieri.NIL) 
 
+
 @app.route('/mappapaginainiziale', methods=['GET'])
 def mappapaginainiziale():
 
@@ -65,6 +66,11 @@ def mappapaginainiziale():
   m.save("templates/mappapagin.html")
   return render_template("mappapagin.html")
 
+
+
+@app.route('/changeroute', methods=['GET'])
+def changeroute():
+  return render_template("whoweare.html")
 
 
 
