@@ -33,6 +33,21 @@ quartieri = gpd.read_file("/workspace/Flask/projectfineanno/files/NIL_WM.zip")
 alloggiMilano = alloggiMilano[pd.notnull(alloggiMilano['geo_x'])]
 
 
+# # sessions
+# # import requests module
+# import requests
+  
+# # create a session object
+# s = requests.Session()
+  
+# # make a get request
+# s.get('https://httpbin.org / cookies / set / sessioncookie / 123456789')
+  
+# # again make a get request
+# r = s.get('https://httpbin.org / cookies')
+
+
+
 
 @app.route('/', methods=['GET'])
 def HomeP():
