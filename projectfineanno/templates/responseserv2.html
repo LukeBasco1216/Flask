@@ -19,8 +19,9 @@
     <p id="Namesite"><a href="/changeroute" class="title"><Strong id="blue">Qui</Strong><Strong id="orange">Va</Strong><Strong id="red">do</Strong></a></p> 
     <!-- line -->
     <hr style="width:100%;text-align:left;margin-left:0;height:2px;border-width:0;color:gray;background-color:gray">
-    <!-- table -->
+    <!-- div per i 2 servizi -->
     <div class="block_container">
+        <!-- div del secondo servizio -->
         <div id="bloc1">
             <form action="/servizio2" method = "GET">
                 <!-- input textbox -->
@@ -29,12 +30,14 @@
                     <input type = "submit" value = "Cerca" class="button"/>
                 </div>
             </form>
+            <!-- div del terzo servizio -->
         </div>
         <div id="bloc2">
             <form action="/servizio3" method = "GET">
                 <!-- input textbox -->
                 <h2>Scegli il nome del quartiere: <br>
                     <select name="quartiere">
+                        <!-- loop per avere i quartieri -->
                     {% for item in quartieri%}
                     <option value="{{item}}">{{item}}</option>
                     {%endfor%}
@@ -46,7 +49,7 @@
             </form>
         </div>
     </div>
-        
+        <!-- la tabella -->
     <div class="containertab">
         <div class="contnomall">
             <h3 id="nomealloggio" style="color: rgb(121, 39, 188);"> {{nome}}</h3>
@@ -67,11 +70,11 @@
             <p id="classifialloggio"><strong>Classificazione:</strong> {{classifi}}</p>
         </div> 
     </div>
-    
+    <!-- div per il link explore -->
     <div id="explore">
         <h3 style="font-family:Trebuchet MS;"><a href="/" class="exp">Explore</a></h3> 
     </div>
-
+    <!-- mappa -->
     <iframe src="/mappaserv2" class="map1"></iframe>
 </body>
 
