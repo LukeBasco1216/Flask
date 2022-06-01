@@ -48,13 +48,18 @@ alloggiMilano = alloggiMilano[pd.notnull(alloggiMilano['geo_x'])]
 
 
 
-
+# pagina iniziale
 @app.route('/', methods=['GET'])
-def HomeP():
+def intro():
+  return render_template("whoweare.html") 
+
+# homepage
+@app.route('/homepage', methods=['GET'])
+def homepage():
   return render_template("homepage.html", quartieri = quartieri.NIL.sort_values(ascending = True)) 
 
 
-
+# blocco di cod per la mappa della homepage
 @app.route('/mappapaginainiziale', methods=['GET'])
 def mappapaginainiziale():
   # crea la mappa
@@ -80,14 +85,14 @@ def mappapaginainiziale():
   return render_template("mappapagin.html")
 
 
-
+# link title
 @app.route('/changeroute', methods=['GET'])
 def changeroute():
   # usato per andare nel html dell'intro
   return render_template("whoweare.html")
 
 
-
+# servizio 2
 @app.route('/servizio2', methods=['GET'])
 def servizio2():
   # prende l'alloggio messo scritto
@@ -113,6 +118,7 @@ def servizio2():
 
     return render_template("responseserv2.html", quartieri = quartieri.NIL.sort_values(ascending = True), nome = nome[0], cate = cate[0], ind = ind[0], quart = quart[0], cap = cap[0], classifi = classifi[0]) 
 
+# mappa servizio 2
 @app.route('/mappaserv2', methods=['GET'])
 def mappaserv2():
   # inizializzazione della mappa
@@ -132,7 +138,7 @@ def mappaserv2():
 
 
 
-
+# servizio 3
 @app.route('/servizio3', methods=['GET'])
 def ricerca():
   # prendo il quartiere scelto
@@ -145,6 +151,7 @@ def ricerca():
   Hotelquart = alloggiMilano[alloggiMilano.within(quartiereUtente.geometry.squeeze())]
   return render_template("responseserv3.html", quartieri = quartieri.NIL.sort_values(ascending = True))
 
+# mappa servizio 3
 @app.route('/mappaserv3', methods=['GET'])
 def mappaserv3():
   # inizializzazione della mappa
@@ -168,8 +175,6 @@ def mappaserv3():
   return render_template("mapserv3.html")
 
 
-
-
-
+  
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
